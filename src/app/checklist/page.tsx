@@ -46,7 +46,8 @@ export default function ChecklistPage() {
     }
     const { error } = await supabase
       .from('control_status')
-      .upsert(payload, { onConflict: ['org_id', 'control_id'] })
+      .upsert(payload, { onConflict: 'org_id,control_id' })
+
 
     if (error) alert('Error saving: ' + error.message)
     else alert('Saved!')
